@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         resources :favorites
       end
       resources :followers
+      get 'follows', to: 'followers#follows'
     end
   end 
 end
