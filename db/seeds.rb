@@ -11,30 +11,28 @@ require 'faker'
 
 100.times do
   User.create!(
-    username: Faker::Internet.username,
-    password: 'user'
-    )
+      username: Faker::Internet.username,
+      password: 'user'
+  )
 end
-
 
 500.times do
   Post.create!(
-    user_id: 1 + rand(100),
-    body: Faker::GreekPhilosophers.quote
-    )
+      user_id: 1 + rand(100),
+      body: Faker::GreekPhilosophers.quote
+  )
 end
-
 
 250.times do
   Follower.create!(
-    user_id: 1 + rand(100),
-    follower_id: 1 + rand(100) 
+      user_id: 1 + rand(100),
+      follower_id: 1 + rand(100)
   )
 end
 
 250.times do
   Favorite.create!(
-    post_id: 1 + rand(500),
-    user_id: 1 + rand(100) 
+      post_id: 1 + rand(500),
+      user_id: 1 + rand(100)
   )
 end
