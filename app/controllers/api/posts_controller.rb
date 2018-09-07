@@ -4,11 +4,11 @@ class API::PostsController < ApplicationController
 
   def index
     @posts = @user.posts
-    render json: @posts
+    # render json: @posts
   end
 
   def show
-    render json: @post
+    # render json: @post
   end
     
   def create
