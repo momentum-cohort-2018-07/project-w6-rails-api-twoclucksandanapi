@@ -24,7 +24,7 @@ The request body should be:
 The response will be:
 ```json
 {
-    "id": 1XX,
+    "id": 00,
     "username": "username",
     "password_digest": "digested password",
     "api_token": "User's Token",
@@ -52,19 +52,19 @@ The response will be:
   ```json
   {
     "links": {
-        "self": "http://roost-microblog.herokuapp.com/api/users/(roosterid)",
+        "self": "http://roost-microblog.herokuapp.com/api/users/rooster_id",
         "list": "http://roost-microblog.herokuapp.com/api/users",
         "update": {
             "method": "PUT",
-            "href": "http://roost-microblog.herokuapp.com/api/users/(roosterid)"
+            "href": "http://roost-microblog.herokuapp.com/api/users/rooster_id"
         },
         "delete": {
             "method": "DELETE",
-            "href": "http://roost-microblog.herokuapp.com/api/users/(roosterid)"
+            "href": "http://roost-microblog.herokuapp.com/api/users/rooster_id"
         }
     },
     "data": {
-        "id": "(roosterid)",
+        "id": 01,
         "attributes": {
             "username": "username",
             "api_token": "Rooster's Token",
@@ -81,12 +81,14 @@ The response will be:
 
 ### Following/Unfollowing another Rooster
 
-  To follow a user, go to `POST /roosters/'rooster_id of rooster you want to follow'/followers`  
-  To view who follows the Rooster `GET /roosters/'roosters id/followers`  
-  To Block a Rooster `Delete /roosters/'roosters id/followers/follower_id`  
+  To follow a user, go to `POST /roosters/rooster_id of rooster you want to follow'/followers`  
+  To view who follows the Rooster `GET /roosters/roosters_id/followers`  
+  To Block a Rooster `Delete /roosters/roosters_id/followers/follower_id`  
 
-  To view who the Rooster follows `GET /roosters/'roosters id/follows`  
-  To see the show page for the person they follow `GET /roosters/'roosters id/follows/follows-id`  
+  To view who the Rooster follows `GET /roosters/roosters_id/follows`  
+  To see the show page for the person they follow `GET /roosters/roosters_id/follows/follows-id`  
+
+  To view the posts of all the Roosters you follow `GET /rooster/rooster_id/clucks`
 
 ## Clucks
 
@@ -116,10 +118,10 @@ The repsonse will be:
         }
     },
     "data": {
-        "user_id": RoosterId,
+        "user_id": 00,
         "username": "(rooster-username",
         "attributes": {
-            "id": CluckId,
+            "id": 01,
             "body": "Content of your Cluck",
             "favorites_count": 0
         }
@@ -137,15 +139,15 @@ The repsonse will be:
   {
     "data": {
         "type": "favorites",
-        "id": favoritesID,
+        "id": 02,
         "attributes": {
-            "user_id": Rooster ID,
+            "user_id": 00,
             "username": "Rooster Username"
         },
         "relationships": {
             "post": {
                 "data": {
-                    "id": Cluck ID,
+                    "id":  01,
                     "body": "Cluck Body COntent"
                 },
                 "links": {
@@ -184,10 +186,10 @@ The repsonse will be:
         }
     },
     "data": {
-        "user_id": rooster_id,
+        "user_id": 00,
         "username": "username",
         "attributes": {
-            "id": cluck_id,
+            "id": 01,
             "body": "REPOST of CLUCK CONTER",
             "favorites_count": 0
         }
