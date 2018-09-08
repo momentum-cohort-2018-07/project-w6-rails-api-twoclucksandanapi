@@ -1,4 +1,3 @@
-
 json.data do
   json.type "followers"
   json.id @follower.id
@@ -13,7 +12,7 @@ json.data do
         json.username @user.username
       end
       json.links do
-          json.self api_user_path(@user)
+        json.self api_user_path(@user)
       end
     end
   end
