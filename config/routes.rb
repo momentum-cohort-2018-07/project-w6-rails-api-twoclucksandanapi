@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
   namespace :api do
     resource :session, only: :create
     resources :users do
