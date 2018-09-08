@@ -97,11 +97,11 @@ The response will be:
 To post a cluck, go to `POST /cluck`  
   
 The request body should be:  
-
+```json
   {
     "body": "Content of your Cluck"  
   }
-
+```
   Clucks validate on length, must be more then 2 characters and less then 280  
 
 The repsonse will be:  
@@ -116,10 +116,10 @@ The repsonse will be:
         }
     },
     "data": {
-        "user_id": (roosteid),
+        "user_id": RoosterId,
         "username": "(rooster-username",
         "attributes": {
-            "id": (cluckid),
+            "id": CluckId,
             "body": "Content of your Cluck",
             "favorites_count": 0
         }
