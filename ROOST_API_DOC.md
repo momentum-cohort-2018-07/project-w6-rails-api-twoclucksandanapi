@@ -16,7 +16,7 @@ The request body should be:
 ```json
 { "user": 
       {
-        "username": "username"
+        "username": "username",
         "password": "password"
       }
 }
