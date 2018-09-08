@@ -7,6 +7,9 @@ class API::UsersController < ApplicationController
   end
 
   def show
+    if current_user.id != @user.id
+      render json: { error: "You are not signed in as this user" }, status: :unauthorized
+    end
   end
 
   def create
@@ -20,15 +23,23 @@ class API::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
+    if current_user.id != @user.id
+      render json: { error: "You can't update this user" }, status: :unauthorized
     else
-      render json: @user.errors, status: :unprocessable_entity
+      if @user.update(user_params)
+        render :show, status: :updated, location: api_user_url(@user)
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
     end
   end
 
   def destroy
-    @user.destroy
+    if current_user.id != @user.id
+      render json: { error: "You can't destroy this user" }, status: :unauthorized
+    else
+      @user.destroy
+    end
   end
 
   private

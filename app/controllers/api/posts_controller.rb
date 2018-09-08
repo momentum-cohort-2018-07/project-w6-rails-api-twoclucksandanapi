@@ -12,13 +12,23 @@ class API::PostsController < ApplicationController
   end
     
   def create
-    @post = @user.posts.create(post_params)
-    render json: @post
+   
+    if current_user.id != @user.id
+      render json: {error: "Must be logged in to post"}
+    else
+      @post = current_user.posts.create(post_params)
+      render json: @post
+      # render :show, status: :created, location: api_user_post_url(@user)
+    end
   end
   
   def destroy
-    @post.destroy
-    render json: @user.posts
+    if current_user.id != @user.id
+      render json: {error: "Must be logged in to post"}
+    else
+      @post.destroy
+      render json: @user.posts
+    end
   end
   
   private 
