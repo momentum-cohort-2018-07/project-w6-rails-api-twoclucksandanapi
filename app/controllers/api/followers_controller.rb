@@ -3,17 +3,17 @@ class API::FollowersController < ApplicationController
 
   # GET api/users/:user_id/followers
   def index
-    @followers = Follower.all.where('user_id=?', params[:user_id])
+    @followers = Follower.all.where('user_id=?', params[:rooster_id])
   end
 
   # GET api/users/:user_id/follows
   def follows
-    @followers = Follower.all.where('follower_id=?', params[:user_id])
+    @followers = Follower.all.where('follower_id=?', params[:rooster_id])
   end
 
   # GET api/users/:user_id/follows/:follows_id
   def follows_show
-    @follower = Follower.where('user_id=?', params[:follows_id]).where('follower_id=?', params[:user_id])[0]
+    @follower = Follower.where('user_id=?', params[:follows_id]).where('follower_id=?', params[:rooster_id])[0]
     @user = User.find(params[:follows_id])
     if !@follower
       render json: {error: "You are not following #{@user.username}"}, status: :conflict
@@ -26,13 +26,13 @@ class API::FollowersController < ApplicationController
 
   # POST api/users/:user_id/followers
   def create
-    if Follower.where('user_id=?', params[:user_id]).where('follower_id=?', current_user.id)[0]
+    if Follower.where('user_id=?', params[:rooster_id]).where('follower_id=?', current_user.id)[0]
       render json: {error: "You can't follow the same user twice."}, status: :conflict
     else
-      @follower = Follower.new(user_id: params[:user_id], follower_id: current_user.id)
+      @follower = Follower.new(user_id: params[:rooster_id], follower_id: current_user.id)
       @user = @follower.user
       if @follower.save
-        render :show, status: :created, location: api_user_follower_path(@user, @follower.follower_id)
+        render :show, status: :created, location: api_rooster_follower_path(@user, @follower.follower_id)
       else
         render json: @follower.errors, status: :unprocessable_entity
       end
@@ -52,8 +52,8 @@ class API::FollowersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_follower
-    @follower = Follower.where('user_id=?', params[:user_id]).where('follower_id=?', params[:id])[0]
-    @user = User.find(params[:user_id])
+    @follower = Follower.where('user_id=?', params[:rooster_id]).where('follower_id=?', params[:id])[0]
+    @user = User.find(params[:rooster_id])
   end
 
   # Only allow a trusted parameter "white list" through.

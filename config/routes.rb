@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     resource :session, only: :create
     post 'cluck', to: 'posts#create'
     get 'profile', to: 'users#profile'
-    resources :users do
-      post 'posts/:id', to: 'posts#repost'
-      resources :posts do
+    resources :roosters, :controller=>"users" do
+      post 'clucks/:id', to: 'posts#repost'
+      resources :clucks, :controller=>"posts" do
         delete 'favorites', to: 'favorites#destroy'
         post 'favorites', to: 'favorites#create'
         get 'favorites', to: 'favorites#index'

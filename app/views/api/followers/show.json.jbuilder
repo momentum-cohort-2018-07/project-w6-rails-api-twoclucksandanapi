@@ -12,20 +12,20 @@ json.data do
         json.username @user.username
       end
       json.links do
-        json.self api_user_path(@user)
+        json.self api_rooster_path(@user)
       end
     end
   end
   json.links do
-    json.self api_user_follower_path(@user, @follower.follower_id)
-    json.list api_user_followers_path
+    json.self api_rooster_follower_path(@user, @follower.follower_id)
+    json.list api_rooster_followers_path
     json.update do
       json.method "PUT"
-      json.href api_user_follower_path(@user, @follower.follower_id)
+      json.href api_rooster_follower_path(@user, @follower.follower_id)
     end
     json.delete do
       json.method "DELETE"
-      json.href api_user_follower_path(@user, @follower.follower_id)
+      json.href api_rooster_follower_path(@user, @follower.follower_id)
     end
   end
 end
