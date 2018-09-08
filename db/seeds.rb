@@ -11,7 +11,7 @@ require 'faker'
 
 100.times do
   User.create!(
-      username: Faker::Internet.username,
+      username: Faker::Internet.unique.username,
       password: 'user'
   )
 end
