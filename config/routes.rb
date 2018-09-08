@@ -1,7 +1,10 @@
 Rails.application.routes.draw do 
   namespace :api do
     resource :session, only: :create
+    post 'cluck', to: 'posts#create'
+    get 'profile', to: 'users#profile'
     resources :users do
+      post 'posts/:id', to: 'posts#repost'
       resources :posts do
         delete 'favorites', to: 'favorites#destroy'
         post 'favorites', to: 'favorites#create'
