@@ -10,19 +10,19 @@ Authencation is done through HTTP Token Authentican. Each User will be provided 
 
 ### To Create a Rooster:
 
-go to `/roosters` to create a user as a POST request
+go to `/roosters` to create a user as a POST request  
 
 The request body should be:
-
+```json
 { "user": 
       {
         "username": "username"
         "password": "password"
       }
 }
-
+```
 The response will be:
-
+```json
 {
     "id": 1XX,
     "username": "username",
@@ -31,25 +31,25 @@ The response will be:
     "created_at": "2018-09-08T18:48:06.022Z",
     "updated_at": "2018-09-08T18:48:06.022Z"
 }
-
--Username validates on uniquesness
--Password has no validations
+```
+-Username validates on uniquesness  
+-Password has no validations  
 
 ### If User exist 
 
-  Go to `/session` to login with username and password
-  On successful login the response will be the Rooster's api_token
+  Go to `/session` to login with username and password  
+  On successful login the response will be the Rooster's api_token  
 
 ## Roosters
 
-  Roosters can create Clucks, Follow Other Roosters, Favorite Clucks, and Repost Clucks
+  Roosters can create Clucks, Follow Other Roosters, Favorite Clucks, and Repost Clucks  
 
 ### Getting Profile Info 
 
-  Must be logged in and authenticated
-  To go to your Roost Profile, `GET /profile` 
-  Response will be:
-
+  Must be logged in and authenticated  
+  To go to your Roost Profile, `GET /profile`   
+  Response will be:  
+  ```json
   {
     "links": {
         "self": "http://roost-microblog.herokuapp.com/api/users/(roosterid)",
@@ -73,39 +73,39 @@ The response will be:
         }
     }
   }
-
+  ```
   The JSON resonse shows you the endpaths to update or delete. Only owners of the Roosts profile can use though methods
 
-  To go to all users, `GET /roosters`
-   The repsonse will be an abridged JSON response with just username and id
+  To go to all users, `GET /roosters`  
+   The repsonse will be an abridged JSON response with just username and id  
 
 ### Following/Unfollowing another Rooster
 
-  To follow a user, go to `POST /roosters/'rooster_id of rooster you want to follow'/followers`
-  To view who follows the Rooster `GET /roosters/'roosters id/followers`
-  To Block a Rooster `Delete /roosters/'roosters id/followers/follower_id`
+  To follow a user, go to `POST /roosters/'rooster_id of rooster you want to follow'/followers`  
+  To view who follows the Rooster `GET /roosters/'roosters id/followers`  
+  To Block a Rooster `Delete /roosters/'roosters id/followers/follower_id`  
 
-  To view who the Rooster follows `GET /roosters/'roosters id/follows`
-  To see the show page for the person they follow `GET /roosters/'roosters id/follows/follows-id`
+  To view who the Rooster follows `GET /roosters/'roosters id/follows`  
+  To see the show page for the person they follow `GET /roosters/'roosters id/follows/follows-id`  
 
 ## Clucks
 
-  At Roost, Clucks are post and you can create, delete, favorite and repost Clucks.
+  At Roost, Clucks are post and you can create, delete, favorite and repost Clucks.  
 
 ### Post a Cluck
 
-To post a cluck, go to `POST /cluck`
+To post a cluck, go to `POST /cluck`  
   
-The request body should be:
+The request body should be:  
 
   {
-    "body": "Content of your Cluck"
+    "body": "Content of your Cluck"  
   }
 
-  Clucks validate on length, must be more then 2 characters and less then 280
+  Clucks validate on length, must be more then 2 characters and less then 280  
 
-The repsonse will be:
-
+The repsonse will be:  
+```json
   {
     "links": {
         "self": "http://roost-microblog.herokuapp.com/api/users/(roosterid)/posts/(cluckid))",
@@ -125,14 +125,15 @@ The repsonse will be:
         }
     }
   }
-
-  The delete end point is in the above response
+```
+  The delete end point is in the above response  
 
 ### Favoriting a Cluck
 
-  To have a Rooster favorite a cluck use:
-  `POST /roosters/:rooster_id/clucks/:cluck_id/favorites`
-  The response will be:
+  To have a Rooster favorite a cluck use:  
+  `POST /roosters/:rooster_id/clucks/:cluck_id/favorites`  
+  The response will be:  
+  ```json
   {
     "data": {
         "type": "favorites",
@@ -162,16 +163,17 @@ The repsonse will be:
         }
     }
   }
-
-  To unfavorite a post use:
-  `DELETE /roosters/:rooster_id/clucks/:cluck_id/favorites`
+  ```
+  To unfavorite a post use:  
+  `DELETE /roosters/:rooster_id/clucks/:cluck_id/favorites`  
 
 ### Repost a Cluck
 
-  To Repost a Cluck use:
-  `POST /roosters/:rooster_id/clucks/cluck_id`
+  To Repost a Cluck use:  
+  `POST /roosters/:rooster_id/clucks/cluck_id`  
 
-  The response will be:
+  The response will be:  
+  ```json
   {
     "links": {
         "self": "http://roost-microblog.herokuapp.com/api/roosters/rooster_id/clucks/cluck_id",
@@ -191,3 +193,4 @@ The repsonse will be:
         }
     }
   }
+  ```
