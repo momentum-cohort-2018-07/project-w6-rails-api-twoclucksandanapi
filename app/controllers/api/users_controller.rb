@@ -1,19 +1,20 @@
 class API::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   skip_before_action :verify_authentication, only: [:create]
+
   def index
     @users = User.all
-    
+
   end
 
   def show
-  
+
   end
 
-  def profile 
+  def profile
     @user = current_user
   end
-  
+
   def create
 
     @user = User.new(user_params)
@@ -27,10 +28,10 @@ class API::UsersController < ApplicationController
 
   def update
     if current_user.id != @user.id
-      render json: { error: "You can't update this user" }, status: :unauthorized
+      render json: {error: "You can't update this user"}, status: :unauthorized
     else
       if @user.update(user_params)
-        render :show, status: :updated, location: api_user_url(@user)
+        render :show, status: :updated, location: api_rooster_url(@user)
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -39,14 +40,14 @@ class API::UsersController < ApplicationController
 
   def destroy
     if current_user.id != @user.id
-      render json: { error: "You can't destroy this user" }, status: :unauthorized
+      render json: {error: "You can't destroy this user"}, status: :unauthorized
     else
       @user.destroy
     end
   end
 
   private
-   
+
   def set_user
     @user = User.find(params[:id])
   end

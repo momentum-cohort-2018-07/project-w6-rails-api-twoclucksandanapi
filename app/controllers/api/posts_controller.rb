@@ -10,14 +10,14 @@ class API::PostsController < ApplicationController
   def show
     # render json: @post
   end
-    
+
   def create
     if !current_user
       render json: {error: "Must be logged in to cluck"}
     else
       @post = Post.new(body: post_params[:body], user_id: current_user.id)
       if @post.save
-        render :show, status: :created, location: api_user_post_url(current_user.id, @post.id)
+        render :show, status: :created, location: api_rooster_cluck_url(current_user.id, @post.id)
       else
         render json: @post.errors, status: :unprocessable_entity
       end
@@ -30,13 +30,13 @@ class API::PostsController < ApplicationController
     else
       @post = Post.new(body: @post.body, user_id: current_user.id)
       if @post.save
-        render :show, status: :created, location: api_user_post_url(current_user.id, @post.id)
+        render :show, status: :created, location: api_rooster_cluck_url(current_user.id, @post.id)
       else
         render json: @post.errors, status: :unprocessable_entity
       end
     end
   end
-  
+
   def destroy
     if current_user.id != @user.id
       render json: {error: "Must be the Rooster to Delete This Cluck"}
@@ -45,17 +45,18 @@ class API::PostsController < ApplicationController
       render json: @user.posts
     end
   end
-  
-  private 
+
+  private
+
   def post_params
-    params.require(:post).permit(:body, :user_id)
+    params.require(:post).permit(:body)
   end
-  
+
   def set_user
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:rooster_id])
   end
-  
+
   def set_post
     @post = Post.find(params[:id])
-  end 
+  end
 end

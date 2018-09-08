@@ -12,16 +12,16 @@ json.data do
         json.body @favorite.post.body
       end
       json.links do
-        json.self api_user_path(@user)
+        json.self api_rooster_path(@user)
       end
     end
   end
   json.links do
-    json.self api_user_post_favorites_path(@favorite.post.user, @favorite.post_id)
-    json.list api_user_post_favorites_path
+    json.self api_rooster_cluck_favorites_path(@favorite.post.user, @favorite.post_id)
+    json.list api_rooster_cluck_favorites_path
     json.delete do
       json.method "DELETE"
-      json.href api_user_post_favorites_path(@favorite.post.user, @favorite.post_id)
+      json.href api_rooster_cluck_favorites_path(@favorite.post.user, @favorite.post_id)
     end
   end
 end

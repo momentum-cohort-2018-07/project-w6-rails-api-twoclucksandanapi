@@ -1,5 +1,5 @@
 json.links do
-  json.self api_user_url(user)
+  json.self api_rooster_url(user)
 end
 json.data do
   json.id user.id
@@ -13,9 +13,9 @@ json.data do
       json.array! user.posts do |post|
         json.data post, :id, :body
         json.links do
-          json.self api_user_post_path(user, post)
+          json.self api_rooster_cluck_path(user, post)
         end
       end
     end
-  end 
+  end
 end

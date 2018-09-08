@@ -1,13 +1,13 @@
 json.links do
-  json.self api_user_url(@user)
-  json.list api_users_url
+  json.self api_rooster_url(@user)
+  json.list api_roosters_url
   json.update do
     json.method "PUT"
-    json.href api_user_url(@user)
+    json.href api_rooster_url(@user)
   end
   json.delete do
     json.method "DELETE"
-    json.href api_user_url(@user)
+    json.href api_rooster_url(@user)
   end
 end
 json.data do
