@@ -1,9 +1,9 @@
 json.links do
-  json.self api_user_post_url(@user.id, @post.id)
-  json.list api_user_posts_url
+  json.self api_user_post_url(@post.user.id, @post.id)
+  json.list api_user_posts_url(@post.user.id)
   json.delete do
     json.method "DELETE"
-    json.href api_user_post_url(@user.id, @post.id)
+    json.href api_user_post_url(@post.user.id, @post.id)
   end
 end
 json.data do
