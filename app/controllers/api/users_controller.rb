@@ -1,18 +1,17 @@
 class API::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-
+  skip_before_action :verify_authentication, only: [:create]
   def index
     @users = User.all
     
   end
 
   def show
-    if current_user.id != @user.id
-      render json: { error: "You are not signed in as this user" }, status: :unauthorized
-    end
+  
   end
 
   def create
+
     @user = User.new(user_params)
 
     if @user.save
