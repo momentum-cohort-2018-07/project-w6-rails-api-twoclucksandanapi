@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resource :session, only: :create
     post 'cluck', to: 'posts#create'
     get 'profile', to: 'users#profile'
+    get 'clucks', to: 'followers#follows_posts'
     resources :roosters, :controller=>"users" do
       post 'clucks/:id', to: 'posts#repost'
       resources :clucks, :controller=>"posts" do

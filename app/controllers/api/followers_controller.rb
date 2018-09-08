@@ -20,6 +20,11 @@ class API::FollowersController < ApplicationController
     end
   end
 
+  def follows_posts
+    @followers = Follower.all.where('follower_id=?', current_user.id)
+    @posts = @followers.map { |follower| follower.user.posts }.flatten
+  end
+
   # GET api/users/:user_id/followers/:follower_id
   def show
   end
