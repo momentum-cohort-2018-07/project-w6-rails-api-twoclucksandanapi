@@ -88,7 +88,7 @@ The response will be:
   To view who the Rooster follows `GET /roosters/roosters_id/follows`  
   To see the show page for the person they follow `GET /roosters/roosters_id/follows/follows-id`  
 
-  To view the posts of all the Roosters you follow `GET /rooster/rooster_id/clucks`
+  To view the posts of all the Roosters you follow `GET /clucks`
 
 ## Clucks
 
